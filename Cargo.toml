@@ -1,0 +1,36 @@
+[package]
+name = "ymi"
+version = "0.0.1"
+edition = "2021"
+description = "终端里的无限画布：图片按 1:1 卡片排开，可拖拽缩放 · an endless picture canvas in the terminal"
+license = "MIT"
+authors = ["masakiyuizzz"]
+repository = "https://github.com/masakiyuizzz/ymi"
+readme = "README.md"
+exclude = ["/.workbuddy", "/dist"]
+keywords = ["tui", "image", "canvas", "terminal", "kitty"]
+categories = ["command-line-utilities", "multimedia::images"]
+rust-version = "1.75"
+
+[[bin]]
+name = "ymi"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+base64 = "0.22"
+clap = { version = "4", features = ["derive"] }
+crossterm = "0.28"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "webp", "gif", "bmp"] }
+libc = "0.2"
+ratatui = "0.29"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+unicode-width = "0.2"
+walkdir = "2"
+
+[profile.release]
+strip = true
+opt-level = 3
+lto = true
+codegen-units = 1
